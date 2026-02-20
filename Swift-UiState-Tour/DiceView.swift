@@ -5,20 +5,21 @@ struct DiceView: View {
     @State private var scale: CGFloat = 1.0
 
     var body: some View {
-        Image(systemName: "die.face.\(numberOfPips)")
-            .resizable()
-            .frame(width: 100, height: 100)
-            .scaleEffect(scale)
-
-        Button("Roll") {
-            numberOfPips = Int.random(in: 1...6)
-            scale = 1.2
-            withAnimation {
-                scale = 1.0
+        VStack {
+            Image(systemName: "die.face.\(numberOfPips)")
+                .resizable()
+                .frame(maxWidth: 100, maxHeight: 100)
+                .aspectRatio(contentMode: .fit)
+                .scaleEffect(scale).foregroundStyle(.black, .white)
+            Button("Roll") {
+                numberOfPips = Int.random(in: 1...6)
+                scale = 1.1
+                withAnimation {
+                    scale = 1.0
+                }
             }
+            .buttonStyle(.bordered)
         }
-        .buttonStyle(.bordered)
-        .padding()
     }
 
 }
